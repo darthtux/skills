@@ -1,0 +1,24 @@
+# Fallback yamllint config, used only when the project has no .yamllint of its own.
+# Starts from yamllint's defaults but downgrades purely stylistic rules to
+# warnings, so "errors" mean the file is broken or genuinely ambiguous.
+extends: default
+
+rules:
+  document-start: disable          # '---' at the top is optional in practice
+  line-length:
+    max: 120
+    level: warning
+  truthy:
+    allowed-values: ["true", "false"]
+    check-keys: false              # GitHub Actions uses a bare `on:` key
+    level: warning
+  comments:
+    min-spaces-from-content: 1
+    level: warning
+  comments-indentation: { level: warning }
+  indentation:
+    spaces: consistent
+    indent-sequences: whatever     # both list styles are common
+  trailing-spaces: { level: warning }
+  new-line-at-end-of-file: { level: warning }
+  empty-lines: { level: warning }
